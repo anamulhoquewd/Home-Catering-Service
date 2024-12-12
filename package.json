@@ -1,0 +1,21 @@
+{
+  "name": "@home.catering.services/monorepo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "lerna": "^8.1.9"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*",
+      "example"
+    ],
+    "nohoist": []
+  },
+  "private": true,
+  "scripts": {
+    "build": "lerna run build",
+    "dev": "lerna run dev"
+  }
+}
