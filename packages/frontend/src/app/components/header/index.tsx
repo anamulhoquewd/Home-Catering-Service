@@ -1,17 +1,19 @@
+"use client";
+
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { AlignJustify, UtensilsCrossed, X } from "lucide-react";
-import { useState, useEffect, useRef, FC } from "react";
+import { useState, useEffect, useRef, FC, Fragment } from "react";
 import { Separator } from "@/components/ui/separator";
 
 interface MenuItemProps {
-  
   name: string;
   href: string;
 }
 const menu: MenuItemProps[] = [
   { name: "Home", href: "/" },
   { name: "Menu", href: "/menu" },
+  { name: "Packages", href: "/packages" },
   { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" },
 ];
@@ -21,33 +23,28 @@ interface MobileMenuProps {
   toggleMenu: () => void;
 }
 const MobileMenu: FC<MobileMenuProps> = ({ isMenuOpen, toggleMenu }) => {
-  const [isVisible, setIsVisible] = useState(false);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const handleOutsideClick = (e: MouseEvent) => {
+      if (
+        mobileMenuRef.current &&
+        !mobileMenuRef.current.contains(e.target as Node)
+      ) {
+        toggleMenu(); // Close menu if clicked outside
+      }
+    };
+
     if (isMenuOpen) {
-      setIsVisible(true);
-
-      const handleOutsideClick = (e: MouseEvent) => {
-        if (
-          mobileMenuRef.current &&
-          !mobileMenuRef.current.contains(e.target as Node)
-        ) {
-          toggleMenu();
-        }
-      };
-
       document.addEventListener("mousedown", handleOutsideClick);
-
-      return () => {
-        document.removeEventListener("mousedown", handleOutsideClick); // Cleanup listener
-      };
     } else {
-      setTimeout(() => setIsVisible(false), 300); // Close animation delay
+      document.removeEventListener("mousedown", handleOutsideClick);
     }
-  }, [isMenuOpen, toggleMenu]);
 
-  if (!isMenuOpen && !isVisible) return null; // Don't render if not visible
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick); // Cleanup listener
+    };
+  }, [isMenuOpen, toggleMenu]);
 
   return (
     <div
@@ -65,16 +62,15 @@ const MobileMenu: FC<MobileMenuProps> = ({ isMenuOpen, toggleMenu }) => {
           />
         </div>
         {menu.map((item, index) => (
-          <>
+          <Fragment key={index}>
             {index > 0 && <Separator className="bg-gray-100" />}
             <Link
-              key={index + item.name}
               href={item.href}
               className="text-sm w-full px-4 py-2 font-medium transition-colors duration-300 hover:text-secondary hover:bg-green-600"
             >
               {item.name}
             </Link>
-          </>
+          </Fragment>
         ))}
       </nav>
     </div>
@@ -92,7 +88,7 @@ const HeaderComponent = () => {
     <>
       <MobileMenu isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
       <header className="bg-primary shadow-sm">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+        <div className="container mx-auto p-4 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <AlignJustify
               onClick={toggleMenu}
@@ -110,17 +106,21 @@ const HeaderComponent = () => {
               <Link
                 key={index + item.name}
                 href={item.href}
-                className="text-sm px-4 py-2 font-medium text-muted/80 transition-colors duration-300 hover:text-secondary rounded-md"
+                className="text-sm px-4 py-2 font-medium transition-colors duration-300 text-secondary rounded-md"
               >
                 {item.name}
               </Link>
             ))}
           </nav>
           <div className="flex space-x-2">
+            <Link href="/auth/signin">
             <Button variant="secondary" size="sm">
               Sign In
             </Button>
+            </Link>
+            <Link href="/auth/signup">
             <Button size="sm">Sign Up</Button>
+            </Link>
           </div>
         </div>
       </header>

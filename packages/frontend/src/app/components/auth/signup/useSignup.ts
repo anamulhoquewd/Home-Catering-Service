@@ -1,28 +1,25 @@
 import { useForm } from "react-hook-form";
-import registerSchema from "./signupSchema";
-import { z } from "zod";
+import registerSchema, { RegisterSchema } from "./signupSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-type MySchemaType = z.infer<typeof registerSchema>;
-
 const useSignup = () => {
-  const form = useForm<MySchemaType>({
+  const form = useForm<RegisterSchema>({
     resolver: zodResolver(registerSchema),
 
     defaultValues: {
       name: "",
       email: "",
       phone: "",
-      address: "",
-      isActive: true,
-      role: "customer",
-      avatar: undefined,
       password: "",
+      address: "",
+      role: "customer",
+      isActive: true,
     },
   });
 
-  const onSubmit = async (values: MySchemaType) => {
-    console.log(values);
+  const onSubmit = async (values: RegisterSchema) => {
+    console.log("values", values);
+    form.reset();
   };
 
   return { form, onSubmit };
