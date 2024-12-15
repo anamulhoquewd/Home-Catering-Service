@@ -4,7 +4,7 @@ import {
   CalendarIcon,
   ChefHatIcon,
 } from "lucide-react";
-import PackageCategory from "./components/category";
+import PackageCategory from "./_components/category";
 
 export default function PackagesPage() {
   return (

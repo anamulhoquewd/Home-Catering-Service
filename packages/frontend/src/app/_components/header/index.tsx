@@ -14,6 +14,7 @@ const menu: MenuItemProps[] = [
   { name: "Home", href: "/" },
   { name: "Menu", href: "/menu" },
   { name: "Packages", href: "/packages" },
+  { name: "Blogs", href: "/blogs" },
   { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" },
 ];

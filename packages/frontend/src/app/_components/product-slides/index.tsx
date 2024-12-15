@@ -1,13 +1,6 @@
 import React from "react";
 import useEmblaCarousel, { EmblaCarouselType } from "embla-carousel-react";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
@@ -129,18 +122,18 @@ const ProductSlider = () => {
                   key={product.id}
                   className="flex-[0_0_100%] min-w-0 px-4 sm:flex-[0_0_50%] md:flex-[0_0_33.33%] lg:flex-[0_0_25%] xl:flex-[0_0_16.666%]"
                 >
-                  <Card className="transform transition-all duration-300 hover:scale-105 hover:shadow-xl">
+                  <Card className="cursor-pointer transform transition-all duration-500 hover:scale-105 hover:shadow-xl">
                     <CardContent className="p-0 relative aspect-[4/5] overflow-hidden rounded-lg bg-teal-900">
                       <Image
                         src={product.image}
                         alt={product.name}
                         width={400}
                         height={500}
-                        className="w-full h-full object-cover opacity-90 transition-transform duration-300 hover:scale-110"
+                        className="w-full h-full select-none object-cover opacity-90 transition-transform duration-300 hover:scale-110"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-teal-9A table. A family is having lunch. A big room.00/90 to-transparent">
                         <div className="absolute bottom-0 left-0 right-0 p-4">
-                          <h3 className="text-white font-bold text-lg mb-2">
+                          <h3 className="select-none text-white font-bold text-lg mb-2">
                             {product.name}
                           </h3>
                           <div className="flex items-center space-x-2">

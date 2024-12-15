@@ -1,9 +1,12 @@
 "use client";
-import Footer from "./components/footer";
-import HeaderComponent from "./components/header";
-import HeroSection from "./components/hero";
-import ProductsSlider from "./components/product-showcase";
-import Slider from "./components/slider";
+import Footer from "./_components/footer";
+import HeaderComponent from "./_components/header";
+import HeroSection from "./_components/hero";
+import SimplifiedMenu from "./_components/menus";
+import ProductsSlider from "./_components/product-slides";
+import ReviewsSection from "./_components/reviews";
+import ServiceSection from "./_components/services";
+import Slider from "./_components/slider";
 
 export default function Home() {
   return (
@@ -11,7 +14,10 @@ export default function Home() {
       <HeaderComponent />
       <HeroSection />
       {/* <Slider /> */}
+      <SimplifiedMenu />
+      <ServiceSection />
       <ProductsSlider />
+      <ReviewsSection />
       <Footer />
     </div>
   );

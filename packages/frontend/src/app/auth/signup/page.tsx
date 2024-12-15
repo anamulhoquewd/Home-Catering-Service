@@ -1,6 +1,6 @@
 "use client";
 
-import SignupComponent from "../../components/auth/signup/signup";
+import SignupComponent from "../../_components/auth/signup/signup";
 
 function SignupPage() {
   return (

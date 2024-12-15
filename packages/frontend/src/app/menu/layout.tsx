@@ -1,7 +1,7 @@
 import Footer from "../_components/footer";
 import HeaderComponent from "../_components/header";
 
-export default function PackageLayout({
+export default function MenuLayout({
   children,
 }: {
   children: React.ReactNode;

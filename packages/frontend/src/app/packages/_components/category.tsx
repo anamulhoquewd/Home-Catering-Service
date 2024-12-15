@@ -49,9 +49,10 @@ export default function PackageCategory({
           </div>
         </div>
       </div>
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 px-2 md:px-8 py-8">
+
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 px-2 md:px-6 py-6">
         {packages.map((pkg, index) => (
-          <Card key={index} className="transition-transform hover:scale-105 flex flex-col">
+          <Card key={index} className="flex flex-col">
             <div className="relative h-48">
               <Image
                 src={pkg.image}
